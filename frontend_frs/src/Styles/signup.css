@@ -1,0 +1,30 @@
+.signup_container {
+  margin-top: 125px;
+}
+.form_container {
+  width: 50%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.signup_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ip {
+  padding: 10px 25px;
+  margin-bottom: 5px;
+  border: 0.5px solid #282826;
+  border-radius: 4px;
+}
+
+.signup_button {
+  border: none;
+  padding: 10px 45px;
+  background-color: navy;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+}
