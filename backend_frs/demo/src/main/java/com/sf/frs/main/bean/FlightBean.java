@@ -16,22 +16,26 @@ import javax.persistence.Table;
 public class FlightBean {
 
 	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int flightID;
-	
-	
-	@OneToMany(mappedBy = "fb", cascade = CascadeType.ALL)
-    private List<ScheduleBean> schedule;
-	
+
 	@Column
 	private String flightName;
-	
+
 	@Column
 	private int seatingCapacity;
-	
+
 	@Column
 	private int reservationCapacity;
+	
+
+
+	public FlightBean() {
+		super();
+	}
+	
+	
 
 	public int getFlightID() {
 		return flightID;
@@ -39,14 +43,6 @@ public class FlightBean {
 
 	public void setFlightID(int flightID) {
 		this.flightID = flightID;
-	}
-
-	public List<ScheduleBean> getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(List<ScheduleBean> schedule) {
-		this.schedule = schedule;
 	}
 
 	public String getFlightName() {
@@ -72,13 +68,7 @@ public class FlightBean {
 	public void setReservationCapacity(int reservationCapacity) {
 		this.reservationCapacity = reservationCapacity;
 	}
-
-	public FlightBean() {
-		super();
-	}
-
 	
 	
-	
-	}
 
+}

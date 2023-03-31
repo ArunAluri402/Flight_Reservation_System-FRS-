@@ -5,20 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "FRS_TBL_Passenger")
 public class PassengerBean {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	private int reservationID;
-	
-	@ManyToOne
-	private ReservationBean rb;
-	
-	
+	private int id;
+
 	@Column
 	private String name;
 	@Column
@@ -27,51 +25,69 @@ public class PassengerBean {
 	private int age;
 	@Column
 	private int seatNo;
-	public int getReservationID() {
-		return reservationID;
+	
+	 @ManyToOne
+	 @JoinColumn(name = "reservationID")
+	    private ReservationBean reservation;
+
+	public PassengerBean() {
+		super();
+
 	}
-	public void setReservationID(int reservationID) {
-		this.reservationID = reservationID;
+	
+	
+	
+
+	public int getId() {
+		return id;
 	}
-	public ReservationBean getRb() {
-		return rb;
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setRb(ReservationBean rb) {
-		this.rb = rb;
+
+
+	public ReservationBean getReservation() {
+		return reservation;
 	}
+
+
+	public void setReservation(ReservationBean reservation) {
+		this.reservation = reservation;
+	}
+
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getGender() {
 		return gender;
 	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 	public int getAge() {
 		return age;
 	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
+
 	public int getSeatNo() {
 		return seatNo;
 	}
+
 	public void setSeatNo(int seatNo) {
 		this.seatNo = seatNo;
 	}
-	public PassengerBean() {
-		super();
-	}
-	
-	
-	
-	
 
 }
-
-
-

@@ -28,50 +28,78 @@ public class RouteBean {
 	@Column
 	private double fare;
 	
-	@OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
-    private List<ScheduleBean> sb;
+
 	
 	
-	
-	public List<ScheduleBean> getSb() {
-		return sb;
-	}
-	public void setSb(List<ScheduleBean> sb) {
-		this.sb = sb;
-	}
-	public int getRouteID() {
-		return routeID;
-	}
-	public void setRouteID(int routeID) {
-		this.routeID = routeID;
-	}
-	public String getSource() {
-		return source;
-	}
-	public void setSource(String source) {
-		this.source = source;
-	}
-	public String getDestination() {
-		return destination;
-	}
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-	public int getDistance() {
-		return distance;
-	}
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
-	public double getFare() {
-		return fare;
-	}
-	public void setFare(double fare) {
-		this.fare = fare;
-	}
-	public RouteBean() {
+		public RouteBean() {
 		super();
+		
+		
+		
 	}
+
+
+
+		public int getRouteID() {
+			return routeID;
+		}
+
+
+
+		public void setRouteID(int routeID) {
+			this.routeID = routeID;
+		}
+
+
+
+		public String getSource() {
+			return source;
+		}
+
+
+
+		public void setSource(String source) {
+			this.source = source;
+		}
+
+
+
+		public String getDestination() {
+			return destination;
+		}
+
+
+
+		public void setDestination(String destination) {
+			this.destination = destination;
+		}
+
+
+
+		public int getDistance() {
+			return distance;
+		}
+
+
+
+		public void setDistance(int distance) {
+			this.distance = distance;
+		}
+
+
+
+		public double getFare() {
+			return fare;
+		}
+
+
+
+		public void setFare(double fare) {
+			this.fare = fare;
+		}
+
+
+
 	
 	
 	

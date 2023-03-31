@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,16 +23,6 @@ public class ScheduleBean {
 	@Column
 	private int scheduleID;
 	
-	@ManyToOne
-	private FlightBean fb;
-	
-	@ManyToOne
-	private RouteBean route;
-
-	
-	@OneToMany(mappedBy = "sb", cascade = CascadeType.ALL)
-    private List<ReservationBean> rb;
-	
 	@Column
 	private String availableDays;
 	
@@ -39,16 +31,49 @@ public class ScheduleBean {
 	
 	@Column
 	private String departureTime;
+	
+	@ManyToOne
+	@JoinColumn(name = "routeID")
+	private RouteBean route;
+
+	
+	@ManyToOne
+	@JoinColumn(name = "flightID")
+	private FlightBean Flight;
+
+	
+	public ScheduleBean() {
+		super();
+	}
 
 	
 	
+	
+	
+
 	public RouteBean getRoute() {
 		return route;
 	}
 
+
+
+
 	public void setRoute(RouteBean route) {
 		this.route = route;
 	}
+
+
+
+
+	public FlightBean getFlight() {
+		return Flight;
+	}
+
+
+	public void setFlight(FlightBean flight) {
+		Flight = flight;
+	}
+
 
 	public int getScheduleID() {
 		return scheduleID;
@@ -56,22 +81,6 @@ public class ScheduleBean {
 
 	public void setScheduleID(int scheduleID) {
 		this.scheduleID = scheduleID;
-	}
-
-	public FlightBean getFb() {
-		return fb;
-	}
-
-	public void setFb(FlightBean fb) {
-		this.fb = fb;
-	}
-
-	public List<ReservationBean> getRb() {
-		return rb;
-	}
-
-	public void setRb(List<ReservationBean> rb) {
-		this.rb = rb;
 	}
 
 	public String getAvailableDays() {
@@ -98,9 +107,8 @@ public class ScheduleBean {
 		this.departureTime = departureTime;
 	}
 
-	public ScheduleBean() {
-		super();
-	}
+	
+	
 	
 	
 	
