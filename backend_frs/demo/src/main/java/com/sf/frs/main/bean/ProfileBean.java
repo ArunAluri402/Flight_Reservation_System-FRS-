@@ -44,6 +44,9 @@ public class ProfileBean {
 	private String mobileNo;
 	@Column(name = "emailID")
 	private String emailID;
+	
+	private String Password;
+	
 
 	public ProfileBean() {
 		super();
@@ -51,6 +54,16 @@ public class ProfileBean {
 
 	public int getProfileID() {
 		return profileID;
+	}
+	
+	
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
 	}
 
 	public void setProfileID(int profileID) {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.sf.frs.main.bean.CredentialsBean;
@@ -16,6 +17,8 @@ public class CredentialService {
 	@Autowired
 	private CredentialsRepository credentialsRepository;
 	
+	
+	@PreAuthorize("userType('Admin')")
 	public List<CredentialsBean> getAllCredentials() {
 		return credentialsRepository.findAll();
 	}
