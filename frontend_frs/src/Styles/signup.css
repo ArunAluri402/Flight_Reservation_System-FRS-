@@ -16,11 +16,18 @@
   margin-top: 15px;
 }
 
-.ip {
+.ip,
+select {
   padding: 10px 25px;
   margin-bottom: 9px;
   border: 0.5px solid #282826;
   border-radius: 4px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .signup_button {

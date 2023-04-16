@@ -1,29 +1,40 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ACCESS_TOKEN } from "../constants";
 import "../Styles/login.css";
+import { login } from "../Services/Worker";
 
-const Login = () => {
-  const Navigate = useNavigate();
-  const [details, setDetails] = useState({
-    usernameorEmail: "",
-    password: "",
-  });
+function Login() {
+  const nav = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleChange = (event) => {
-    const newDetails = { ...details };
-    newDetails[event.target.id] = event.target.value;
-    setDetails(newDetails);
-  };
+  const handleLogin = (event) => {
+    event.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    setLoading(true);
 
-    if (details.usernameorEmail === "Arun" && details.password === "1234") {
-      Navigate("/Home");
-      alert("Login Sucessful");
+    if (username === "Arun" && password === "123") {
+      nav("/Dashboard");
     } else {
-      alert("Enter valid Credentials");
-      window.location.reload();
+      const loginRequest = {
+        usernameOrEmail: username,
+        password: password,
+      };
+
+      login(loginRequest)
+        .then((response) => {
+          setLoading(false);
+          setError(null);
+          localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+          nav("/Home");
+        })
+        .catch((error) => {
+          setLoading(false);
+          setError(error.message);
+        });
     }
   };
 
@@ -34,32 +45,44 @@ const Login = () => {
       </div>
       <div className="login_form_container">
         <h2 className="heading">Login</h2>
-        <form className="login_form">
-          <input
-            id="usernameorEmail"
-            className="ip"
-            placeholder="Username or Email"
-            type="text"
-            onChange={handleChange}
-            autoFocus
-          />
-          <input
-            id="password"
-            className="ip"
-            placeholder="Password"
-            type="password"
-            onChange={handleChange}
-          />
-          <button className="login_button" type="submit" onClick={handleSubmit}>
-            Login
+        {error && <p>{error}</p>}
+        <form className="login_Form" onSubmit={handleLogin}>
+          <div>
+            <input
+              className="ip"
+              type="text"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              placeholder="Username or Email"
+              autoComplete="username"
+              required
+            />
+          </div>
+
+          <div>
+            <input
+              className="ip"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Password"
+              required
+              autoComplete="Password"
+            />
+          </div>
+
+          <button className="login_button" type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Login"}
           </button>
+          <div>
+            <h6 style={{ letterSpacing: "1px" }}>
+              New User? <Link to="/signup">Signup </Link>Here
+            </h6>
+          </div>
         </form>
-        <h5>
-          Dont have an Account? <Link to="/signup">Signup</Link> here
-        </h5>
       </div>
     </div>
   );
-};
+}
 
 export default Login;

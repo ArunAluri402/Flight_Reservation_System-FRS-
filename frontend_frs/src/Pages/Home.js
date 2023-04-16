@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { WorkerAPI } from "../Services/Worker";
+import React from "react";
 
-const Home = () => {
-  const [reservationDetails, setReservationDetails] = useState();
-
-  useEffect(() => {
-    const res = WorkerAPI.getReservations();
-    console.log(res);
-  }, []);
-
-  return <h1>Home</h1>;
-};
+function Home() {
+  return <div>Home</div>;
+}
 
 export default Home;
