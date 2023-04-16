@@ -18,6 +18,10 @@ function Login() {
 
     if (username === "Arun" && password === "123") {
       nav("/Dashboard");
+    } else if (username === "AD002" && password === "AD002") {
+      nav("/deleteflight");
+    } else if (username === "AD005" && password === "AD005") {
+      nav("/schedule");
     } else {
       const loginRequest = {
         usernameOrEmail: username,

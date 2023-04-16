@@ -7,6 +7,8 @@ import { ACCESS_TOKEN } from "./constants";
 import Dashboard from "./Pages/Dashboard";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import DeleteFlight from "./Pages/DeleteFlight";
+import Schedule from "./Pages/Schedule";
 
 function App() {
   const nav = useNavigate();
@@ -72,6 +74,8 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/Home" element={<Home />} />
+        <Route path="/deleteflight" element={<DeleteFlight />} />
+        <Route path="/schedule" element={<Schedule />} />
       </Routes>
     </div>
   );
