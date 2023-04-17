@@ -1,6 +1,6 @@
 package com.sf.frs.main.payload;
 
-import javax.persistence.Column;
+
 
 public class SignUpRequest {
  

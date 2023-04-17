@@ -164,6 +164,12 @@ public class AuthController {
 	    	return flightServices.getAllFlights();
 		}
 	   
+		@PostMapping("/AddFlight")
+		public FlightBean createflight(@RequestBody FlightBean flightBean) {
+			return flightServices.createFlight(flightBean);
+		}
+		
+	   
 //	   Passenger Controller
 	   
 	   @GetMapping("/getallPassengers")
@@ -174,6 +180,12 @@ public class AuthController {
 	    	
 		}
 	   
+		@PostMapping("/AddPassenger")
+		public PassengerBean createPassenger(@RequestBody PassengerBean passengerBean) {
+			return passengerServices.createPassenger(passengerBean);
+		}
+		
+	   
 //	   Route Controller
 	   
 	   @GetMapping("/getallRoutes")
@@ -182,6 +194,11 @@ public class AuthController {
 	    	return routeServices.getAllRoutes();
 		}
 	   
+		@PostMapping("/AddRoute")
+		public RouteBean createRoute(@RequestBody RouteBean routeBean) {
+			return routeServices.createRoute(routeBean);
+		}
+		
 //	   Schedule Controller
 	   
 	   @GetMapping("/getallSchedules")
@@ -189,6 +206,12 @@ public class AuthController {
 	    	
 	    	return scheduleServices.getAllSchedules();
 		}
+	   
+		@PostMapping("/AddSchedule")
+		public ScheduleBean createSchedule(@RequestBody ScheduleBean scheduleBean) {
+			return scheduleServices.createSchedule(scheduleBean);
+		}
+		
 	   
 //	   Reservation Controller
 	   
@@ -198,6 +221,11 @@ public class AuthController {
 	    	return reservationServices.getallReservations();
 		}
 	
+		@PostMapping("/AddReservation")
+		public ReservationBean createReservation(@RequestBody ReservationBean reservationBean) {
+			return reservationServices.createReservation(reservationBean);
+		}
+		
 	
 	
 	
