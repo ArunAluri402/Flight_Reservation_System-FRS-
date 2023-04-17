@@ -16,12 +16,16 @@ function Login() {
 
     setLoading(true);
 
-    if (username === "Arun" && password === "123") {
-      nav("/Dashboard");
+    if (username === "AD001" && password === "AD001") {
+      nav("/addflight");
     } else if (username === "AD002" && password === "AD002") {
       nav("/deleteflight");
+    } else if (username === "AD003" && password === "AD003") {
+      nav("/viewflight");
+    } else if (username === "AD004" && password === "AD004") {
+      nav("/modifyflight");
     } else if (username === "AD005" && password === "AD005") {
-      nav("/schedule");
+      nav("/addflightroute");
     } else {
       const loginRequest = {
         usernameOrEmail: username,
@@ -60,6 +64,7 @@ function Login() {
               placeholder="Username or Email"
               autoComplete="username"
               required
+              autoFocus={true}
             />
           </div>
 

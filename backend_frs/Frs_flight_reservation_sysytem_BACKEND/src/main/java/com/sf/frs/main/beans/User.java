@@ -1,10 +1,8 @@
 package com.sf.frs.main.beans;
 
-
 import org.hibernate.annotations.NaturalId;
 
 import com.sf.frs.main.beans.audit.DateAudit;
-
 
 import javax.persistence.*;
 
@@ -12,16 +10,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-            "username"
-        }),
-        @UniqueConstraint(columnNames = {
-            "email"
-        })
-})
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
+		@UniqueConstraint(columnNames = { "email" }) })
 public class User extends DateAudit {
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -159,23 +151,23 @@ public class User extends DateAudit {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column
-    private String name;
+	@Column
+	private String name;
 
- @Column
- private String username;
+	@Column
+	private String username;
 
-    @NaturalId
-    @Column
-    private String email;
+	@NaturalId
+	@Column
+	private String email;
 
-    @Column
-    private String password;
+	@Column
+	private String password;
 
-    @Column
+	@Column
 	private String firstName;
 	@Column
 	private String lastName;
@@ -195,17 +187,15 @@ public class User extends DateAudit {
 	private String pincode;
 	@Column
 	private String mobileNo;
-	
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
 	public User(Long id, String name, String username, String email, String password, String firstName, String lastName,
 			String dateOfBirth, String gender, String street, String location, String city, String state,
 			String pincode, String mobileNo, Set<Role> roles) {
-	
+
 		this.id = id;
 		this.name = name;
 		this.username = username;
@@ -228,13 +218,7 @@ public class User extends DateAudit {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
 	
 	
 
-	
-
-       
-    
 }

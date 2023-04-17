@@ -17,8 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.sf.frs.main.beans.FlightBean;
+import com.sf.frs.main.beans.PassengerBean;
+import com.sf.frs.main.beans.ReservationBean;
 import com.sf.frs.main.beans.Role;
 import com.sf.frs.main.beans.RoleName;
+import com.sf.frs.main.beans.RouteBean;
+import com.sf.frs.main.beans.ScheduleBean;
 import com.sf.frs.main.beans.User;
 import com.sf.frs.main.dao.RoleRepository;
 import com.sf.frs.main.dao.UserRepository;
@@ -28,6 +33,11 @@ import com.sf.frs.main.payload.JwtAuthenticationResponse;
 import com.sf.frs.main.payload.LoginRequest;
 import com.sf.frs.main.payload.SignUpRequest;
 import com.sf.frs.main.security.JwtTokenProvider;
+import com.sf.frs.main.services.FlightServices;
+import com.sf.frs.main.services.PassengerServices;
+import com.sf.frs.main.services.ReservationServices;
+import com.sf.frs.main.services.RouteServices;
+import com.sf.frs.main.services.ScheduleServices;
 import com.sf.frs.main.services.UserService;
 
 import java.net.URI;
@@ -57,6 +67,20 @@ public class AuthController {
     @Autowired
     UserService userService;
     
+    @Autowired
+    private FlightServices flightServices;
+    
+    @Autowired
+    private RouteServices routeServices;
+    
+    @Autowired
+    private PassengerServices passengerServices;
+    
+    @Autowired
+    private ScheduleServices scheduleServices;
+    
+    @Autowired
+    private ReservationServices reservationServices;
     
     @GetMapping("/userdetails")
 	public List<User> getAllusers(){
@@ -125,4 +149,58 @@ public class AuthController {
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
+	
+	
+	
+//	----------------------------FRS CONTROLLER------------------------------------------
+	
+	
+	
+//	Flight Controller
+	
+	   @GetMapping("/getallFlights")
+		public List<FlightBean> getallFlights(){
+	    	
+	    	return flightServices.getAllFlights();
+		}
+	   
+//	   Passenger Controller
+	   
+	   @GetMapping("/getallPassengers")
+		public List<PassengerBean> getAllPassengers(){
+	    	
+	    	return passengerServices.getAllPassengers();
+	    	
+	    	
+		}
+	   
+//	   Route Controller
+	   
+	   @GetMapping("/getallRoutes")
+		public List<RouteBean> getAllRoutes(){
+	    	
+	    	return routeServices.getAllRoutes();
+		}
+	   
+//	   Schedule Controller
+	   
+	   @GetMapping("/getallSchedules")
+		public List<ScheduleBean> getAllSchedules(){
+	    	
+	    	return scheduleServices.getAllSchedules();
+		}
+	   
+//	   Reservation Controller
+	   
+	   @GetMapping("/getallReservations")
+		public List<ReservationBean> getAllReservations(){
+	    	
+	    	return reservationServices.getallReservations();
+		}
+	
+	
+	
+	
+	
+	
 }
