@@ -36,4 +36,17 @@ public class FlightServices {
 	        flightDAO.delete(flightBean);
 	    }
 
+	public FlightBean updateFlight(Integer id, FlightBean flight) {
+		FlightBean flightbean = flightDAO.findById(id)
+	            .orElseThrow(() -> new DataNotFound("Flight with id : "+id+" not exists"));
+
+	       flightbean.setFlightName(flight.getFlightName());
+	       flightbean.setReservationCapacity(flight.getReservationCapacity());
+	       flightbean.setSeatingCapacity(flight.getSeatingCapacity());
+	       
+	       return flightDAO.save(flightbean);
+
+	       
+	}
+
 }

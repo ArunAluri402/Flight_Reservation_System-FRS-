@@ -70,6 +70,7 @@ function App() {
               isAuthenticated={Data.isAuthenticated}
               currentUser={Data.currentUser}
               handleLogout={handleLogOut}
+              onLogin={handleLogin}
             />
           }
         />
@@ -77,7 +78,14 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/deleteflight" element={<DeleteFlight />} />
-        <Route path="/addflight" element={<AddFlight />} />
+        <Route
+          path="/addflight"
+          isAuthenticated={Data.isAuthenticated}
+          currentUser={Data.currentUser}
+          handleLogout={handleLogOut}
+          onLogin={handleLogin}
+          element={<AddFlight />}
+        />
         <Route path="/viewflight" element={<ViewFlights />} />
         <Route path="/modifyflight" element={<ModifyFlight />} />
         <Route path="/addflightroute" element={<AddFlightRoute />} />

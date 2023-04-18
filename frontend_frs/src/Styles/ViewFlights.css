@@ -1,0 +1,75 @@
+.view_container {
+  background-color: #fff;
+  background-image: url("../../public/Assets/background_flight.jpg");
+  height: 100vh;
+  background-size: 100vw;
+  background-repeat: no-repeat;
+}
+
+.header {
+  height: 80px;
+  width: 100vw;
+  background-color: #244d61;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_logo {
+  width: 12%;
+}
+
+.logout_button {
+  background-color: #eaebed;
+  padding: 10px 25px;
+  margin-right: 55px;
+  border-radius: 5px;
+  color: #244d61;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete_button {
+  background-color: #eaebed;
+  padding: 10px 25px;
+  border-radius: 5px;
+  color: #244d61;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.logout_button:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+.view_heading {
+  background-color: rgb(255, 255, 255, 0.3);
+  color: #000;
+  padding: 15px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.flightList_table {
+  margin: auto;
+}
+
+.flightTable {
+  margin: auto;
+  width: 70vw;
+  background-color: #244d61ec;
+  color: #eaebed;
+  margin-top: 35px;
+  border-radius: 5px;
+  padding: 15px 12px;
+}
+
+.table_data {
+  padding: 10px 5px;
+}
+
+.table_heading {
+  padding-bottom: 25px;
+}

@@ -1,6 +1,6 @@
 package com.sf.frs.main.payload;
 
-
+import java.util.Set;
 
 public class SignUpRequest {
  
@@ -103,6 +103,7 @@ public class SignUpRequest {
    	private String state;
    	private String pincode;
    	private String mobileNo;
+	
    	
    	
    	

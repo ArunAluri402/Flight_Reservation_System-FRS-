@@ -10,8 +10,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,11 +45,13 @@ import com.sf.frs.main.services.UserService;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class AuthController {
 
     @Autowired
@@ -136,7 +141,7 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+        Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));
@@ -148,6 +153,12 @@ public class AuthController {
                 .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+        
+        
+        
+
+
+        
     }
 	
 	
@@ -169,6 +180,27 @@ public class AuthController {
 			return flightServices.createFlight(flightBean);
 		}
 		
+		@GetMapping("/flight/{id}")
+		public ResponseEntity<FlightBean> getFlightId(@PathVariable Integer id){
+			FlightBean flightBean = flightServices.getFlightById(id);
+			return ResponseEntity.ok(flightBean);
+			
+		}
+		  @PutMapping("/updateflight/{id}")
+		    public ResponseEntity<FlightBean> updateFlight(@PathVariable Integer id ,@RequestBody FlightBean flight){
+		    	
+				FlightBean flightBean = flightServices.updateFlight(id,flight);
+				return ResponseEntity.ok(flightBean);
+				
+			}
+		
+		 @DeleteMapping("/deleteflight/{id}")
+			public ResponseEntity<Map<String, Boolean>> deleteflight(@PathVariable Integer id){
+		    	flightServices.deleteflight(id);
+				Map<String, Boolean> response = new HashMap<>();
+				response.put("deleted", Boolean.TRUE);
+				return ResponseEntity.ok(response);
+			}
 	   
 //	   Passenger Controller
 	   

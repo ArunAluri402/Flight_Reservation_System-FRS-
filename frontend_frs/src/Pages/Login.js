@@ -37,7 +37,7 @@ function Login() {
           setLoading(false);
           setError(null);
           localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-          nav("/Home");
+          nav("/addflight");
         })
         .catch((error) => {
           setLoading(false);
