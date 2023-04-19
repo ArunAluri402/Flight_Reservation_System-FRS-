@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { addFlight } from "../Services/Worker";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ACCESS_TOKEN } from "../constants";
+import "../Styles/AddFlight.css";
+import Header from "../Components/Header";
 
 function AddFlight() {
-  const { flightID } = useParams();
   const nav = useNavigate();
-
   const [flightData, setFlightData] = useState({
     flightID: 0,
     flightName: "",
@@ -20,47 +21,62 @@ function AddFlight() {
   };
 
   const submithhandle = (e) => {
-    e.prventDefault();
-    addFlight(flightData).then((res) => alert("Flight Added Sucessfully", res));
-
-    nav("/viewflight");
-    console.log(flightData);
+    e.preventDefault();
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+      axios
+        .post("http://localhost:8080/api/auth/AddFlight", flightData)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      nav("/viewflight");
+      window.location.reload();
+    } else {
+      alert("ERROR");
+    }
   };
 
   return (
     <div className="Add_flight_form">
-      <h2>Add Flight</h2>
-      <form onSubmit={submithhandle}>
-        <label>
-          Flight Name
-          <input
-            type="text"
-            id="flightName"
-            onChange={handlechange}
-            value={flightData.flightName}
-          />
-        </label>
-        <label>
-          Seating Capacity
-          <input
-            type="number"
-            value={flightData.seatingCapacity}
-            id="seatingCapacity"
-            onChange={handlechange}
-          />
-        </label>
-        <label>
-          Reservation Capacity
-          <input
-            type="number"
-            id="reservationCapacity"
-            onChange={handlechange}
-            value={flightData.reservationCapacity}
-          />
-        </label>
+      <Header buttonclassName="logout_button" buttonName="Logout" />
+      <h2 className="view_heading">Add Flight</h2>
+      <form className="Add_flightTable" onSubmit={submithhandle}>
+        <div className="flex">
+          <div className="flex_addflight">
+            <label className="side_label">Flight Name</label>
+            <label className="side_label">Seating Capacity</label>
+            <label className="side_label">Reservation Capacity</label>
+          </div>
+          <div className="flex_ip">
+            <input
+              className="ip"
+              type="text"
+              id="flightName"
+              onChange={handlechange}
+              value={flightData.flightName}
+            />
+            <input
+              className="ip"
+              type="number"
+              value={flightData.seatingCapacity}
+              id="seatingCapacity"
+              onChange={handlechange}
+            />
+            <input
+              className="ip"
+              type="number"
+              id="reservationCapacity"
+              onChange={handlechange}
+              value={flightData.reservationCapacity}
+            />
+          </div>
+        </div>
+
         <div className="buttonflex">
-          <button className="Add_btn" type="submit">
-            {flightID ? "Update Flight" : "Add Flight"}
+          <button className="logout_button" type="submit">
+            Add Flight
           </button>
         </div>
       </form>

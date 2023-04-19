@@ -8,6 +8,7 @@ function Login() {
   const nav = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -37,11 +38,12 @@ function Login() {
           setLoading(false);
           setError(null);
           localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-          nav("/addflight");
+          nav("/Home");
         })
         .catch((error) => {
           setLoading(false);
           setError(error.message);
+          alert("Wrong Credentials");
         });
     }
   };
@@ -55,6 +57,10 @@ function Login() {
         <h2 className="heading">Login</h2>
         {error && <p>{error}</p>}
         <form className="login_Form" onSubmit={handleLogin}>
+          {/* <div onChange={(e) => setCheck(e.target.value)}>
+            <input type="radio" name="Admin" />
+            {check ? "admin" : "user"}
+          </div> */}
           <div>
             <input
               className="ip"

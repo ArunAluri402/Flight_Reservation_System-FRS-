@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { getCurrentUser } from "./Services/Worker";
 import { ACCESS_TOKEN } from "./constants";
 import Dashboard from "./Pages/Dashboard";
-import Home from "./Pages/Home";
+import Home from "./Pages/UserProfile";
 import Login from "./Pages/Login";
 import DeleteFlight from "./Pages/DeleteFlight";
 import AddFlight from "./Pages/AddFlight";
 import ViewFlights from "./Pages/ViewFlights";
 import ModifyFlight from "./Pages/ModifyFlight";
 import AddFlightRoute from "./Pages/AddFlightRoute";
+import UserProfile from "./Pages/UserProfile";
 function App() {
   const nav = useNavigate();
   const [Data, setData] = useState({
@@ -64,7 +65,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/Home" element={<Home />} />
+        <Route path="/Home" element={<UserProfile />} />
+        {/* <Route path="/deleteflight" element={<DeleteFlight />} /> */}
         <Route path="/deleteflight" element={<DeleteFlight />} />
         <Route path="/addflight" element={<AddFlight />} />
         <Route path="/viewflight" element={<ViewFlights />} />

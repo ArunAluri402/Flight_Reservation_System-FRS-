@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { getFlightList } from "../Services/Worker";
+import { deleteFlight, getFlightList } from "../Services/Worker";
 import Header from "../Components/Header";
 import { useParams } from "react-router-dom";
 
 function DeleteFlight() {
   const [flightList, setFlightList] = useState([]);
-  const { flightID } = useParams();
+  const { id } = useParams();
+  console.log(flightList);
 
   useEffect(() => {
     getFlightList().then((res) => setFlightList(res));
-  }, []);
+  }, [id]);
 
-  const deleteHandle = (id) => {};
+  const deleteHandle = (id) => {
+    deleteFlight(id).then(() => {
+      setFlightList(flightList.filter((item) => item.flightID !== id));
+    });
+  };
 
   return (
     <div className="view_container">

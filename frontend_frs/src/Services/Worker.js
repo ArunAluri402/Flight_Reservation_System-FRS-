@@ -104,7 +104,23 @@ export function getFlightByID(id) {
   });
 }
 
-export async function addFlight(data) {
-  const response = await axios.post(`${API_BASE_URL}/auth/AddFlight`, data);
-  return response.data;
-}
+// export const addFlight = async (data) => {
+//   const response = await axios.post(
+//     request({
+//       url: `${API_BASE_URL}/auth/AddFlight` + data,
+//       method: "POST",
+//       data: data,
+//     })
+//   );
+//   return response.data;
+// };
+
+// export const getFlightByID = async (id) => {
+//   const response = await axios.get(`${API_BASE_URL}/auth/flight/${id}`);
+//   return response.data;
+// };
+
+export const deleteFlight = async (id) => {
+  const res = await axios.delete(`${API_BASE_URL}/auth/deleteflight/${id}`);
+  return res.data;
+};

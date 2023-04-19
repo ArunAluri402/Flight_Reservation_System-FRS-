@@ -178,7 +178,6 @@ public class AuthController {
 		}
 	   
 		@PostMapping("/AddFlight")
-		
 		public FlightBean createflight(@RequestBody FlightBean flightBean) {
 			return flightServices.createFlight(flightBean);
 		}
@@ -197,9 +196,9 @@ public class AuthController {
 				
 			}
 		
-		 @DeleteMapping("/deleteflight/{id}")
-			public ResponseEntity<Map<String, Boolean>> deleteflight(@PathVariable Integer id){
-		    	flightServices.deleteflight(id);
+		 @DeleteMapping("/deleteflight/{flightID}")
+			public ResponseEntity<Map<String, Boolean>> deleteflight(@PathVariable Integer flightID){
+		    	flightServices.deleteflight(flightID);
 				Map<String, Boolean> response = new HashMap<>();
 				response.put("deleted", Boolean.TRUE);
 				return ResponseEntity.ok(response);

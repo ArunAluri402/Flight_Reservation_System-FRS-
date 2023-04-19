@@ -1,4 +1,5 @@
-.view_container {
+.view_container,
+.Add_flight_form {
   background-color: #fff;
   background-image: url("../../public/Assets/background_flight.jpg");
   height: 100vh;
@@ -27,6 +28,7 @@
   color: #244d61;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 700;
 }
 
 .delete_button {
@@ -72,4 +74,9 @@
 
 .table_heading {
   padding-bottom: 25px;
+}
+
+.navbar_options {
+  display: flex;
+  align-items: center;
 }
