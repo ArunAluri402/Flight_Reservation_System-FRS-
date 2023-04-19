@@ -57,9 +57,9 @@ function Signup() {
         setSuccess(false);
       });
 
-    // setTimeout(() => {
-    //   nav("/");
-    // }, 1500);
+    setTimeout(() => {
+      nav("/");
+    }, 1500);
   };
 
   return (

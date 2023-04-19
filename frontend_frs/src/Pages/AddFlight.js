@@ -21,9 +21,10 @@ function AddFlight() {
 
   const submithhandle = (e) => {
     e.prventDefault();
-    addFlight(flightData).then((res) => setFlightData(res.data));
-    alert("Flight Added Sucessfully");
+    addFlight(flightData).then((res) => alert("Flight Added Sucessfully", res));
+
     nav("/viewflight");
+    console.log(flightData);
   };
 
   return (

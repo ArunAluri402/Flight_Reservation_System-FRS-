@@ -49,6 +49,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
@@ -94,7 +96,7 @@ public class AuthController {
 	}
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -111,7 +113,7 @@ public class AuthController {
 
    
 	@PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Validated @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ApiResponse(false, "Username is already taken!"),HttpStatus.BAD_REQUEST);
         }
@@ -141,7 +143,7 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));
@@ -176,6 +178,7 @@ public class AuthController {
 		}
 	   
 		@PostMapping("/AddFlight")
+		
 		public FlightBean createflight(@RequestBody FlightBean flightBean) {
 			return flightServices.createFlight(flightBean);
 		}

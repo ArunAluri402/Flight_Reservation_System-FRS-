@@ -1,8 +1,6 @@
 package com.sf.frs.main.config;
 
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +21,6 @@ import com.sf.frs.main.security.CustomUserDetailsService;
 import com.sf.frs.main.security.JwtAuthenticationEntryPoint;
 import com.sf.frs.main.security.JwtAuthenticationFilter;
 
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -33,6 +29,7 @@ import com.sf.frs.main.security.JwtAuthenticationFilter;
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
@@ -65,15 +62,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .cors()
+                    .and()
+                .csrf()
+                    .disable()
+                .exceptionHandling()
+                    .authenticationEntryPoint(unauthorizedHandler)
+                    .and()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                .authorizeRequests()
+                    .antMatchers("/",
+                        "/favicon.ico",
+                        "/**/*.png",
+                        "/**/*.gif",
+                        "/**/*.svg",
+                        "/**/*.jpg",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js")
+                        .permitAll()
+                    .antMatchers("/api/auth/**")
+                        .permitAll()
+                    .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
+                        .permitAll()
+                    .antMatchers(HttpMethod.GET, "/api/users/**")
+                        .permitAll()
+                    .anyRequest()
+                        .authenticated();
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 }

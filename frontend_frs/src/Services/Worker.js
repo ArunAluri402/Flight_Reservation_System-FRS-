@@ -2,35 +2,34 @@ import axios from "axios";
 import { API_BASE_URL, ACCESS_TOKEN } from "../constants";
 
 const request = (options) => {
-  const headers = new Headers({
+  const headers = {
     "Content-Type": "application/json",
-  });
+  };
 
   if (localStorage.getItem(ACCESS_TOKEN)) {
-    headers.append(
-      "Authorization",
-      "Bearer " + localStorage.getItem(ACCESS_TOKEN)
-    );
+    headers["Authorization"] = "Bearer " + localStorage.getItem(ACCESS_TOKEN);
   }
 
   const defaults = { headers: headers };
   options = Object.assign({}, defaults, options);
 
-  return fetch(options.url, { ...options }).then((response) =>
-    response.json().then((json) => {
-      if (!response.ok) {
-        return Promise.reject(json);
+  return axios(options)
+    .then((response) => {
+      if (!response.data) {
+        return Promise.reject(response);
       }
-      return json;
+      return response.data;
     })
-  );
+    .catch((error) => {
+      return Promise.reject(error.response.data);
+    });
 };
 
 export function login(loginRequest) {
   return request({
     url: API_BASE_URL + "/auth/signin",
     method: "POST",
-    body: JSON.stringify(loginRequest),
+    data: loginRequest,
   });
 }
 
@@ -38,15 +37,15 @@ export function signup(signupRequest) {
   return request({
     url: `${API_BASE_URL}/auth/signup`,
     method: "POST",
-    body: JSON.stringify(signupRequest),
+    data: signupRequest,
   });
 }
 
 export function Adminsignup(signupRequest) {
   return request({
-    url: `${API_BASE_URL}/auth/admin/signup`,
+    url: `${API_BASE_URL}/auth/signup`,
     method: "POST",
-    body: JSON.stringify(signupRequest),
+    data: signupRequest,
   });
 }
 
@@ -105,7 +104,7 @@ export function getFlightByID(id) {
   });
 }
 
-export const addFlight = () => async (data) => {
-  const response = await axios.post(`${API_BASE_URL}/AddFlight`, data);
+export async function addFlight(data) {
+  const response = await axios.post(`${API_BASE_URL}/auth/AddFlight`, data);
   return response.data;
-};
+}

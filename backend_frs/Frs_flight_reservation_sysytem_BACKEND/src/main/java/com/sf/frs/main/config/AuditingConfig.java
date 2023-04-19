@@ -1,8 +1,5 @@
 package com.sf.frs.main.config;
 
-
-
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -38,7 +35,7 @@ class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
         }
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        
+
         return Optional.ofNullable(userPrincipal.getId());
     }
 }
