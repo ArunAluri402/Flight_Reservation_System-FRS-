@@ -104,17 +104,6 @@ export function getFlightByID(id) {
   });
 }
 
-// export const addFlight = async (data) => {
-//   const response = await axios.post(
-//     request({
-//       url: `${API_BASE_URL}/auth/AddFlight` + data,
-//       method: "POST",
-//       data: data,
-//     })
-//   );
-//   return response.data;
-// };
-
 // export const getFlightByID = async (id) => {
 //   const response = await axios.get(`${API_BASE_URL}/auth/flight/${id}`);
 //   return response.data;
@@ -122,5 +111,31 @@ export function getFlightByID(id) {
 
 export const deleteFlight = async (id) => {
   const res = await axios.delete(`${API_BASE_URL}/auth/deleteflight/${id}`);
+  return res.data;
+};
+
+// Route API
+
+export const getallroutes = async () => {
+  const res = await axios.get(`${API_BASE_URL}/auth/getallRoutes`);
+  return res.data;
+};
+
+export const deleteFlightRoutes = async (id) => {
+  const res = await axios.delete(
+    `${API_BASE_URL}/auth/deleteflightroute/${id}`
+  );
+  return res.data;
+};
+
+export const addRoute = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/AddRoute`, data);
+  return res.data;
+};
+
+// schedules
+
+export const getallSchedules = async () => {
+  const res = await axios.get(`${API_BASE_URL}/auth/getallSchedules`);
   return res.data;
 };

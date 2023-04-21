@@ -1,5 +1,6 @@
 package com.sf.frs.main.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,25 @@ import javax.persistence.Table;
 @Table(name = "FRS_TBL_PASSENGER")
 public class PassengerBean {
 	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	private int id;
+	@Column
+	private String name;
+	@Column
+	private String gender;
+	@Column
+	private int age;
+	@Column
+	private int seatNo;
+	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private ReservationBean reservationBean;
+
+
 	public int getId() {
 		return id;
 	}
@@ -73,27 +93,8 @@ public class PassengerBean {
 	}
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	private int id;
-	@Column
-	private String name;
-	@Column
-	private String gender;
-	@Column
-	private int age;
-	@Column
-	private int seatNo;
-	
-
-	@ManyToOne
-	@JoinColumn(name = "reservationID")
-	private ReservationBean reservationBean;
-
-
 	public PassengerBean(int id, String name, String gender, int age, int seatNo, ReservationBean reservationBean) {
-		
+		super();
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
@@ -104,10 +105,10 @@ public class PassengerBean {
 
 
 	public PassengerBean() {
-		super();
+	
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 	
 	

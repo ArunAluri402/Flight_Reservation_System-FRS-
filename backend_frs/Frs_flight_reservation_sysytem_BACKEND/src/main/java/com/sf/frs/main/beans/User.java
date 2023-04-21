@@ -7,12 +7,62 @@ import com.sf.frs.main.beans.audit.DateAudit;
 import javax.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
 		@UniqueConstraint(columnNames = { "email" }) })
 public class User extends DateAudit {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column
+	private String name;
+
+	@Column
+	private String username;
+
+	@NaturalId
+	@Column
+	private String email;
+
+	@Column
+	private String password;
+
+	@Column
+	private String firstName;
+	@Column
+	private String lastName;
+	@Column
+	private String dateOfBirth;
+	@Column
+	private String gender;
+	@Column
+	private String street;
+	@Column
+	private String location;
+	@Column
+	private String city;
+	@Column
+	private String state;
+	@Column
+	private String pincode;
+	@Column
+	private String mobileNo;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
+
 	public Long getId() {
 		return id;
 	}
@@ -141,61 +191,15 @@ public class User extends DateAudit {
 		this.roles = roles;
 	}
 
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column
-	private String name;
-
-	@Column
-	private String username;
-
-	@NaturalId
-	@Column
-	private String email;
-
-	@Column
-	private String password;
-
-	@Column
-	private String firstName;
-	@Column
-	private String lastName;
-	@Column
-	private String dateOfBirth;
-	@Column
-	private String gender;
-	@Column
-	private String street;
-	@Column
-	private String location;
-	@Column
-	private String city;
-	@Column
-	private String state;
-	@Column
-	private String pincode;
-	@Column
-	private String mobileNo;
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
-
 	public User(Long id, String name, String username, String email, String password, String firstName, String lastName,
 			String dateOfBirth, String gender, String street, String location, String city, String state,
-			String pincode, String mobileNo, Set<Role> roles) {
-
+			String pincode, String mobileNo, Set<Role> roles, List<ReservationBean> reservationBeans) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
@@ -212,13 +216,13 @@ public class User extends DateAudit {
 		this.pincode = pincode;
 		this.mobileNo = mobileNo;
 		this.roles = roles;
+		
 	}
 
 	public User() {
-		super();
+		
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-
 }

@@ -10,8 +10,8 @@ function AddFlight() {
   const [flightData, setFlightData] = useState({
     flightID: 0,
     flightName: "",
-    seatingCapacity: "",
-    reservationCapacity: "",
+    seatingCapacity: 0,
+    reservationCapacity: 0,
   });
 
   const handlechange = (e) => {
@@ -32,7 +32,7 @@ function AddFlight() {
           console.error(error);
         });
       nav("/viewflight");
-      window.location.reload();
+      alert("Flight added sucessfully");
     } else {
       alert("ERROR");
     }

@@ -1,5 +1,8 @@
 package com.sf.frs.main.beans;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,11 +10,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "FRS_TBL_SCHEDULE")
 public class ScheduleBean {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	private int scheduleID;
+	@Column
+	private int travelduration;
+	@Column
+	private String availableDays;
+	@Column
+	private String departureTime;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private FlightBean flightBean;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private RouteBean routeBean;
+
+	
 	public int getScheduleID() {
 		return scheduleID;
 	}
@@ -60,47 +83,26 @@ public class ScheduleBean {
 		this.routeBean = routeBean;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	private int scheduleID;
-	@Column
-	private int travelduration;
-	@Column
-	private String availableDays;
-	@Column
-	private String departureTime;
-	
-	@ManyToOne
-	@JoinColumn(name = "flightID")
-	private FlightBean flightBean;
-	
-	@ManyToOne
-	@JoinColumn(name = "routeID")
-	private RouteBean routeBean;
+
 
 	public ScheduleBean(int scheduleID, int travelduration, String availableDays, String departureTime,
-			FlightBean flightBean, RouteBean routeBean) {
-		
+			FlightBean flightBean, RouteBean routeBean, List<ReservationBean> reservationBeans) {
+		super();
 		this.scheduleID = scheduleID;
 		this.travelduration = travelduration;
 		this.availableDays = availableDays;
 		this.departureTime = departureTime;
 		this.flightBean = flightBean;
 		this.routeBean = routeBean;
+		
 	}
 
 	public ScheduleBean() {
-		super();
+		
 		// TODO Auto-generated constructor stub
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 }

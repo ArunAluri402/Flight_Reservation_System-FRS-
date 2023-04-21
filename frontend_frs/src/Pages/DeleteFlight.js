@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 function DeleteFlight() {
   const [flightList, setFlightList] = useState([]);
   const { id } = useParams();
-  console.log(flightList);
+
 
   useEffect(() => {
     getFlightList().then((res) => setFlightList(res));

@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import com.sf.frs.main.beans.RouteBean;
 import com.sf.frs.main.dao.RouteDAO;
 import com.sf.frs.main.exceptions.DataNotFound;
@@ -36,4 +34,19 @@ public class RouteServices {
 
 	        routeDAO.delete(routeBean);
 	    }
+	  
+	  public RouteBean updateroute(Integer id, RouteBean route) {
+			RouteBean routebean = routeDAO.findById(id)
+		            .orElseThrow(() -> new DataNotFound("Route with id : "+id+" not exists"));
+
+		       routebean.setSource(route.getSource());
+		       routebean.setDestination(route.getDestination());
+		       routebean.setFare(route.getFare());
+		       routebean.setDistance(route.getDistance());
+		       
+		       return routeDAO.save(routebean);
+
+		       
+		}
+
 }
