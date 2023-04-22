@@ -42,6 +42,8 @@ function Login() {
       nav("/deleteschedule");
     } else if (username === "AD011" && password === "AD011") {
       nav("/viewschedules");
+    }else if (username === "AD011" && password === "AD011") {
+      nav("/viewschedules");
     } else {
       const loginRequest = {
         usernameOrEmail: username,

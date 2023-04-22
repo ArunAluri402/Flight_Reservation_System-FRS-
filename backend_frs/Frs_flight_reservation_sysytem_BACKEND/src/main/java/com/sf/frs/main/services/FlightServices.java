@@ -2,6 +2,8 @@ package com.sf.frs.main.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ public class FlightServices {
 	
 	@Autowired
 	private FlightDAO flightDAO;
+	
+	  @Transactional
+	    public FlightBean saveFlight(FlightBean flight) {
+	        return flightDAO.save(flight);
+	    }
 	
 	  public List<FlightBean> getAllFlights(){
 	        return flightDAO.findAll();

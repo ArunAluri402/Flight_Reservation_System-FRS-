@@ -151,10 +151,15 @@ public class AuthController {
 		return flightServices.getAllFlights();
 	}
 
-	@PostMapping("/AddFlight")
-	public FlightBean createflight(@RequestBody FlightBean flightBean) {
-		return flightServices.createFlight(flightBean);
-	}
+//	@PostMapping("/AddFlight")
+//	public FlightBean createflight(@RequestBody FlightBean flightBean) {
+//		return flightServices.createFlight(flightBean);
+//	}
+//	
+	 @PostMapping("/AddFlight")
+	    public FlightBean createFlight(@RequestBody FlightBean flight) {
+	        return flightServices.saveFlight(flight);
+	    }
 
 	@GetMapping("/flight/{id}")
 	public ResponseEntity<FlightBean> getFlightId(@PathVariable Integer id) {

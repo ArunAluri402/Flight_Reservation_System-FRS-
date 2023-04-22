@@ -1,16 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { ACCESS_TOKEN } from "../constants";
-import { getallSchedules } from "../Services/Worker";
+import {
+  deleteFlightRoutes,
+  deleteSchedule,
+  getallSchedules,
+  getallroutes,
+} from "../Services/Worker";
 import Header from "../Components/Header";
+import { useParams } from "react-router-dom";
 
-function ViewSchedules() {
+function DeleteSchedule() {
+  const { id } = useParams();
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
     if (ACCESS_TOKEN) {
       getallSchedules().then((res) => setSchedules(res));
     }
-  }, []);
+  }, [id]);
+
+  const deleteHandle = (id) => {
+    deleteSchedule(id).then(() => {
+      setSchedules(schedules.filter((item) => item.scheduleID !== id));
+    });
+  };
   return (
     <div className="Add_flight_form">
       <Header
@@ -46,6 +59,14 @@ function ViewSchedules() {
                   <td className="table_data">{sc.departureTime}</td>
                   <td className="table_data">{sc.travelduration} hours</td>
                   <td className="table_data">{sc.routeBean.fare} Rs</td>
+                  <td className="table-data">
+                    <button
+                      className="delete_button"
+                      onClick={() => deleteHandle(sc.scheduleID)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
@@ -56,4 +77,4 @@ function ViewSchedules() {
   );
 }
 
-export default ViewSchedules;
+export default DeleteSchedule;

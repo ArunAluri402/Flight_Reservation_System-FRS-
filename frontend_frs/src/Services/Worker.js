@@ -129,7 +129,7 @@ export const deleteFlightRoutes = async (id) => {
 };
 
 export const addRoute = async (data) => {
-  const res = await axios.post(`${API_BASE_URL}/AddRoute`, data);
+  const res = await axios.post(`${API_BASE_URL}/auth/AddRoute`, data);
   return res.data;
 };
 
@@ -137,5 +137,15 @@ export const addRoute = async (data) => {
 
 export const getallSchedules = async () => {
   const res = await axios.get(`${API_BASE_URL}/auth/getallSchedules`);
+  return res.data;
+};
+
+export const deleteSchedule = async (id) => {
+  const res = await axios.delete(`${API_BASE_URL}/auth/deleteschedule/${id}`);
+  return res.data;
+};
+
+export const addschedule = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/auth/AddSchedule`, data);
   return res.data;
 };
