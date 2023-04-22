@@ -56,6 +56,7 @@ function AddFlight() {
               id="flightName"
               onChange={handlechange}
               value={flightData.flightName}
+              autoFocus={true}
             />
             <input
               className="ip"

@@ -57,6 +57,7 @@ function AddFlightRoute() {
               id="source"
               value={data.source}
               onChange={handlechange}
+              autoFocus={true}
             />
             <input
               className="ip"

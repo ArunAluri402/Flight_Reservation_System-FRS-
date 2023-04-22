@@ -13,12 +13,7 @@ function ViewSchedules() {
   }, []);
   return (
     <div className="Add_flight_form">
-      <Header
-        buttonName="Logout"
-        buttonclassName="logout_button"
-        secondbuttonName="Add Schedule"
-        secondbuttonclassName="logout_button"
-      />
+      <Header buttonName="Logout" buttonclassName="logout_button" />
       <div className="flightList_table">
         <h2 className="view_heading">Schedule table</h2>
         <table align="center" className="flightTable">

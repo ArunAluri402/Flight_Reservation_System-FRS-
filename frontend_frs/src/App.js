@@ -85,6 +85,10 @@ function App() {
         <Route path="/addschedule" element={<AddSchedule />} />
         {/* reservations */}
         <Route path="/viewreservation" element={<ViewReservations />} />
+
+        {/* user */}
+
+        
       </Routes>
     </div>
   );

@@ -14,12 +14,7 @@ function ViewRoute() {
   console.log(routeData);
   return (
     <div className="view_container">
-      <Header
-        buttonclassName="logout_button"
-        buttonName="Logout"
-        secondbuttonName="Add Route"
-        secondbuttonclassName="logout_button"
-      />
+      <Header buttonclassName="logout_button" buttonName="Logout" />
       <div className="flightList_table">
         <h2 className="view_heading">Route List</h2>
         <table align="center" className="flightTable">

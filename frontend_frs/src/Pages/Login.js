@@ -42,14 +42,20 @@ function Login() {
       nav("/deleteschedule");
     } else if (username === "AD011" && password === "AD011") {
       nav("/viewschedules");
-    }else if (username === "AD011" && password === "AD011") {
+    } else if (username === "AD011" && password === "AD011") {
       nav("/viewschedules");
     }
     // resevation
     else if (username === "AD011" && password === "AD011") {
       nav("/viewreservation");
     }
-    else {
+
+    //user
+    else if (username === "US001" && password === "US001") {
+      nav("/signup");
+    } else if (username === "US002" && password === "US002") {
+      nav("/viewschedules");
+    } else {
       const loginRequest = {
         usernameOrEmail: username,
         password: password,
@@ -107,11 +113,6 @@ function Login() {
           <button className="login_button" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Login"}
           </button>
-          <div>
-            <h6 style={{ letterSpacing: "1px" }}>
-              New User? <Link to="/signup">Signup </Link>Here
-            </h6>
-          </div>
         </form>
       </div>
     </div>

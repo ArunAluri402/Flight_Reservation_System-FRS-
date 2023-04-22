@@ -109,9 +109,6 @@ function AddSchedule() {
     });
   };
 
-  console.log(selectFlight);
-  console.log(selectRoute);
-  console.log(schedule);
   return (
     <div className="Add_flight_form">
       <Header buttonName="Logout" buttonclassName="logout_button" />
@@ -122,7 +119,7 @@ function AddSchedule() {
             <label className="side_label">Select Flight</label>
             <label className="side_label">Select Source</label>
 
-            <label className="side_label">Travel Duration</label>
+            <label className="side_label">Travel Duration (Hrs)</label>
             <label className="side_label">Available Days</label>
             <label className="side_label">Departure Time</label>
           </div>
