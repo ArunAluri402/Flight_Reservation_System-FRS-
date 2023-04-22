@@ -25,7 +25,6 @@ function AddSchedule() {
   ]);
 
   const [schedule, setSchedule] = useState({
-   
     travelduration: 0,
     availableDays: "",
     departureTime: "",
@@ -67,6 +66,8 @@ function AddSchedule() {
     try {
       const data = await addschedule(schedule);
       console.log(data);
+      alert("Schedule Added Sucessfully");
+      nav("/viewschedules");
     } catch (error) {
       console.log(error);
     }

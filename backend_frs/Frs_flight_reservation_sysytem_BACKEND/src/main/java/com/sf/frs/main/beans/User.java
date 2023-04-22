@@ -2,10 +2,13 @@ package com.sf.frs.main.beans;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sf.frs.main.beans.audit.DateAudit;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -61,6 +64,10 @@ public class User extends DateAudit {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	
+	
+
 
 
 	public Long getId() {
@@ -196,9 +203,16 @@ public class User extends DateAudit {
 		return serialVersionUID;
 	}
 
+	
+
+	public User() {
+		
+		// TODO Auto-generated constructor stub
+	}
+
 	public User(Long id, String name, String username, String email, String password, String firstName, String lastName,
 			String dateOfBirth, String gender, String street, String location, String city, String state,
-			String pincode, String mobileNo, Set<Role> roles, List<ReservationBean> reservationBeans) {
+			String pincode, String mobileNo, Set<Role> roles, Collection<User> passengerBeans) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -216,12 +230,6 @@ public class User extends DateAudit {
 		this.pincode = pincode;
 		this.mobileNo = mobileNo;
 		this.roles = roles;
-		
-	}
-
-	public User() {
-		
-		// TODO Auto-generated constructor stub
 	}
 	
 	

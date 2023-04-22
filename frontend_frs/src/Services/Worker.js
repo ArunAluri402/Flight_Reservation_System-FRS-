@@ -141,7 +141,7 @@ export const getallSchedules = async () => {
 };
 
 export const deleteSchedule = async (id) => {
-  const res = await axios.delete(`${API_BASE_URL}/auth/deleteschedule/${id}`);
+  const res = await axios.delete(`${API_BASE_URL}/auth/deleteSchedule/${id}`);
   return res.data;
 };
 

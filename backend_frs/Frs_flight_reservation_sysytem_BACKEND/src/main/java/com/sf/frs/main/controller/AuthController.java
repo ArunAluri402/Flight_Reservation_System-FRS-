@@ -246,6 +246,15 @@ public class AuthController {
 	public ScheduleBean createSchedule(@RequestBody ScheduleBean scheduleBean) {
 		return scheduleServices.createSchedule(scheduleBean);
 	}
+	
+	@DeleteMapping("/deleteSchedule/{scheduleID}")
+	public ResponseEntity<Map<String, Boolean>> deleteSchedule(@PathVariable Integer scheduleID) {
+		scheduleServices.deleteSchedule(scheduleID);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+	}
+
 
 //	   Reservation Controller
 

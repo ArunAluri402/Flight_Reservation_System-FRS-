@@ -29,8 +29,10 @@ public class PassengerBean {
 	private int seatNo;
 	
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private ReservationBean reservationBean;
+	
+	
 
 
 	public int getId() {

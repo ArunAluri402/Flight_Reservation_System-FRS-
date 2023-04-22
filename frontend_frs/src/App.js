@@ -16,6 +16,7 @@ import DeleteFlightRoute from "./Pages/DeleteFlightRoute";
 import ViewSchedules from "./Pages/ViewSchedules";
 import DeleteSchedule from "./Pages/DeleteSchedule";
 import AddSchedule from "./Pages/AddSchedule";
+import ViewReservations from "./Pages/ViewReservations";
 function App() {
   const nav = useNavigate();
   const [Data, setData] = useState({
@@ -82,6 +83,8 @@ function App() {
         <Route path="/viewschedules" element={<ViewSchedules />} />
         <Route path="/deleteschedule" element={<DeleteSchedule />} />
         <Route path="/addschedule" element={<AddSchedule />} />
+        {/* reservations */}
+        <Route path="/viewreservation" element={<ViewReservations />} />
       </Routes>
     </div>
   );

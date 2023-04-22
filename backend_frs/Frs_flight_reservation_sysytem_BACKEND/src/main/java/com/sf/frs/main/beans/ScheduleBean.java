@@ -28,10 +28,10 @@ public class ScheduleBean {
 	@Column
 	private String departureTime;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private FlightBean flightBean;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private RouteBean routeBean;
 
 	

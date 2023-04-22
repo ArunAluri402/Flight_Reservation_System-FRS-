@@ -44,7 +44,12 @@ function Login() {
       nav("/viewschedules");
     }else if (username === "AD011" && password === "AD011") {
       nav("/viewschedules");
-    } else {
+    }
+    // resevation
+    else if (username === "AD011" && password === "AD011") {
+      nav("/viewreservation");
+    }
+    else {
       const loginRequest = {
         usernameOrEmail: username,
         password: password,
